@@ -14,22 +14,6 @@ import Third from './routes/third'
 
 
 ReactDOM.render(
-  // <<BrowserRouter>
-  //   <Routes>
-  //     <Route path="/" element={<App />} />
-  //     <Route path="known" element={<First />} />
-  //     <Route path="include" element={<Second />} />
-  //     <Route path="exclude" element={<Third />} />
-  //     <Route
-  //       path="*"
-  //       element={
-  //         <main style={{ padding: "1rem" }}>
-  //           <p>There's nothing here!</p>
-  //         </main>
-  //       }
-  //     />
-  //   </Routes>
-  // </BrowserRouter>>,
   <App />,
   document.getElementById('root')
 );

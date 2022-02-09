@@ -177,9 +177,6 @@ export default class App extends Component {
           </ul>
         </div>
 
-
-        {/* <div>{this.state.first}{this.state.second}{this.state.third}{this.state.fourth}{this.state.fifth}</div> */}
-
         <button onClick={() => this.calculate()}>SUBMIT</button>
 
         <div>
