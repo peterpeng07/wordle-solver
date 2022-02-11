@@ -134,7 +134,7 @@ export default class App extends Component {
             <input type="text" className={styles.letterBox} value={this.state.fifth} maxLength="1" onChange={(e) => this.setState({ fifth: e.target.value })} />
           </div>
 
-          <div className={styles.instruction}>Next, add letters that are in the word but in the wrong spot (letters in yellow tiles), as well as the positions they are not in. Make sure you click the plus button when entering a letter and its position.</div>
+          <div className={styles.instruction}>Next, add letters that are in the word but in the wrong spot (letters in yellow tiles), as well as the positions they are not in. Make sure you click the add button when entering a letter and its position.</div>
           <div className={styles.sectionWrapper}>
             <div className={styles.columnWrapper}>
               <input
