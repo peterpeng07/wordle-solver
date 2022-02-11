@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.titleWrapper {
+  margin: 10px;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  text-align: center;
+  padding: 10px;
+  margin: 6px;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.instruction {
+}
+
+.contentWrapper {
+  width: 100%;
+  margin: 10px;
+}
+
+.inputWrapper {
+  margin: 10px;
+  padding: 10px;
+}
+
+.letterBox {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.sectionWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.columnWrapper {
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+}
+
+input::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+.letterBox1 {
+  width: 40px;
+  height: 24px;
+  padding: 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10%;
+  border-width: 1px;
+}
+
+.letterBox2 {
+  width: 66px;
+  height: 24px;
+  padding: 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10%;
+  border-width: 1px;
+}
+
+.addButton {
+  margin: 6px;
+  padding: 4px;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.deleteButton {
+  margin-left: 10px;
+}
+
+.submitButton {
+  width: 100px;
+  height: 30px;
+}
+
+.result {
+  margin: 20px;
+}
+
+ul {
+  margin-top: 5px;
+}
