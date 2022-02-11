@@ -17,10 +17,23 @@ export default class App extends Component {
       newLetterExcluded: '',
       excludeList: [],
       result: [],
-      isLoading: false
+      isLoading: false,
+      width: window.innerWidth
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+  }
+
+  handleWindowSizeChange() {
+    this.setState({ width: window.innerWidth });
   }
 
   handleChange(event) {
@@ -96,11 +109,13 @@ export default class App extends Component {
 
     fetch('https://infinite-castle-67227.herokuapp.com/https://wordle-solver-api.herokuapp.com/', requestOptions)
       .then(response => response.json())
-      .then(data => this.setState({ result: data }))
-      .then(this.setState({ isLoading: false }))
+      .then(data => this.setState({ result: data, isLoading: false }))
   }
 
+
   render() {
+    const isMobile = this.state.width < 768;
+
     return (
       <div className={styles.container}>
 
@@ -108,7 +123,6 @@ export default class App extends Component {
           <div className={styles.title}>Wordle Solver</div>
           <div className={styles.instruction}>Stuck in Wordle? No problem! This is a simple online application that helps you solve Wordle problems when you just can't possibly think of the next word. Welcome!</div>
         </div>
-
 
         <div className={styles.contentWrapper}>
           <div className={styles.instruction}>Start by entering letters in the correct spot (letters in green tiles) in the text boxes below and leave the unknown ones empty.</div>
@@ -126,7 +140,7 @@ export default class App extends Component {
               <input
                 type="text"
                 maxLength="1"
-                placeholder='letter'
+                placeholder={isMobile ? 'L' : 'letter'}
                 className={styles.letterBox1}
                 value={this.state.newLetterIncluded}
                 onChange={(e) => this.setState({ newLetterIncluded: e.target.value })}
@@ -136,7 +150,7 @@ export default class App extends Component {
                 maxLength="1"
                 min="1"
                 max="5"
-                placeholder='position'
+                placeholder={isMobile ? 'P' : 'position'}
                 className={styles.letterBox2}
                 value={this.state.position}
                 onChange={(e) => this.setState({ position: e.target.value })}
@@ -146,11 +160,11 @@ export default class App extends Component {
                 disabled={this.state.newLetterIncluded === '' || this.state.position === ''}
                 onClick={() => this.addLetterIncluded()}
               >
-                ADD
+                {isMobile ? '+' : 'ADD'}
               </button>
             </div>
             <div className={styles.columnWrapper}>
-              {this.state.includeList.length === 0 ? <div /> : <div>Letters in the word</div>}
+              {this.state.includeList.length === 0 ? <div /> : <div className={styles.instruction}>Letters in the word</div>}
               <ul>
                 {this.state.includeList.map(item => {
                   return (
@@ -160,7 +174,7 @@ export default class App extends Component {
                         className={styles.deleteButton}
                         onClick={() => this.deleteLetterIncluded(item)}
                       >
-                        DEL
+                        {isMobile ? '-' : 'DEL'}
                       </button>
                     </li>
                   )
@@ -175,7 +189,7 @@ export default class App extends Component {
               <input
                 type="text"
                 maxLength="1"
-                placeholder='letter'
+                placeholder={isMobile ? 'L' : 'letter'}
                 className={styles.letterBox1}
                 value={this.state.newLetterExcluded}
                 onChange={(e) => this.setState({ newLetterExcluded: e.target.value })}
@@ -185,11 +199,11 @@ export default class App extends Component {
                 disabled={this.state.newLetterExcluded === ''}
                 onClick={() => this.addLetterExcluded()}
               >
-                ADD
+                {isMobile ? '+' : 'ADD'}
               </button>
             </div>
             <div className={styles.columnWrapper}>
-              {this.state.excludeList.length === 0 ? <div /> : <div>Letters not in the word</div>}
+              {this.state.excludeList.length === 0 ? <div /> : <div className={styles.instruction}>Letters not in the word</div>}
               <ul>
                 {this.state.excludeList.map(item => {
                   return (
@@ -199,7 +213,7 @@ export default class App extends Component {
                         className={styles.deleteButton}
                         onClick={() => this.deleteLetterExcluded(item)}
                       >
-                        DEL
+                        {isMobile ? '-' : 'DEL'}
                       </button>
                     </li>
                   )
@@ -215,7 +229,7 @@ export default class App extends Component {
             onClick={() => this.calculate()}
 
           >
-            SUBMIT
+            {this.state.isLoading ? 'Solving...' : 'SUBMIT'}
           </button>
 
           <div className={styles.result}>
