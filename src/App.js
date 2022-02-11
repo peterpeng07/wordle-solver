@@ -160,7 +160,7 @@ export default class App extends Component {
                 disabled={this.state.newLetterIncluded === '' || this.state.position === ''}
                 onClick={() => this.addLetterIncluded()}
               >
-                {isMobile ? 'a' : 'ADD'}
+                {isMobile ? '+' : 'ADD'}
               </button>
             </div>
             <div className={styles.columnWrapper}>
@@ -189,7 +189,7 @@ export default class App extends Component {
               <input
                 type="text"
                 maxLength="1"
-                placeholder={isMobile ? 'L' : 'letter'}
+                placeholder={isMobile ? 'a' : 'letter'}
                 className={styles.letterBox1}
                 value={this.state.newLetterExcluded}
                 onChange={(e) => this.setState({ newLetterExcluded: e.target.value })}
