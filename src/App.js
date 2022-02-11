@@ -90,7 +90,8 @@ export default class App extends Component {
         "fifth": this.state.fifth,
         "includeList": this.state.includeList,
         "excludeList": this.state.excludeList
-      })
+      }),
+      mode: 'cors'
     }
 
     fetch('https://infinite-castle-67227.herokuapp.com/https://wordle-solver-api.herokuapp.com/', requestOptions)
