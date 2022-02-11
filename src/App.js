@@ -81,7 +81,7 @@ export default class App extends Component {
     this.setState({ result: [], isLoading: true })
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
       body: JSON.stringify({
         "first": this.state.first,
         "second": this.state.second,
