@@ -134,13 +134,13 @@ export default class App extends Component {
             <input type="text" className={styles.letterBox} value={this.state.fifth} maxLength="1" onChange={(e) => this.setState({ fifth: e.target.value })} />
           </div>
 
-          <div className={styles.instruction}>Next, add letters that are in the word but in the wrong spot (letters in yellow tiles), as well as the positions they are not in.</div>
+          <div className={styles.instruction}>Next, add letters that are in the word but in the wrong spot (letters in yellow tiles), as well as the positions they are not in. Make sure you click the plus button when entering a letter and its position.</div>
           <div className={styles.sectionWrapper}>
             <div className={styles.columnWrapper}>
               <input
                 type="text"
                 maxLength="1"
-                placeholder={isMobile ? 'L' : 'letter'}
+                placeholder={isMobile ? 'a' : 'letter'}
                 className={styles.letterBox1}
                 value={this.state.newLetterIncluded}
                 onChange={(e) => this.setState({ newLetterIncluded: e.target.value })}
@@ -150,7 +150,7 @@ export default class App extends Component {
                 maxLength="1"
                 min="1"
                 max="5"
-                placeholder={isMobile ? 'P' : 'position'}
+                placeholder={isMobile ? '1' : 'position'}
                 className={styles.letterBox2}
                 value={this.state.position}
                 onChange={(e) => this.setState({ position: e.target.value })}
@@ -160,7 +160,7 @@ export default class App extends Component {
                 disabled={this.state.newLetterIncluded === '' || this.state.position === ''}
                 onClick={() => this.addLetterIncluded()}
               >
-                {isMobile ? '+' : 'ADD'}
+                {isMobile ? 'a' : 'ADD'}
               </button>
             </div>
             <div className={styles.columnWrapper}>
@@ -183,7 +183,7 @@ export default class App extends Component {
             </div>
           </div>
 
-          <div className={styles.instruction}>Finally, add letters that are not in the word (letters in gray tiles).</div>
+          <div className={styles.instruction}>Finally, add letters that are not in the word (letters in gray tiles). Again, make sure you click the add button when entering a letter.</div>
           <div className={styles.sectionWrapper}>
             <div className={styles.columnWrapper}>
               <input
