@@ -109,8 +109,15 @@ export default class App extends Component {
 
     // fetch('https://infinite-castle-67227.herokuapp.com/https://wordle-solver-api.herokuapp.com/', requestOptions)
     fetch('https://wordle-solver-api.herokuapp.com/', requestOptions)
-      .then(response => response.json())
-      .then(data => this.setState({ result: data, isLoading: false }))
+      .then(response => {
+        if (!response.ok) {
+          alert("Something went wrong...")
+        }
+        return response.json()
+      })
+      .then(data => this.setState({ result: data }))
+      .catch(error => alert("Something went wrong... [" + error + "]"))
+      .finally(() => this.setState({ isLoading: false }))
   }
 
 
