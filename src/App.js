@@ -128,7 +128,7 @@ export default class App extends Component {
       <div className={styles.container}>
 
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>Wordle Solver</div>
+          <div className={styles.title}>Wordle Solver 0.1</div>
           <div className={styles.instruction}>Stuck in Wordle? No problem! This is a simple online application that helps you solve Wordle problems when you just can't possibly think of the next word. Welcome!</div>
         </div>
 
