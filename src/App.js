@@ -107,16 +107,19 @@ export default class App extends Component {
       mode: 'cors'
     }
 
+    console.log("Request sent")
+
     // fetch('https://infinite-castle-67227.herokuapp.com/https://wordle-solver-api.herokuapp.com/', requestOptions)
     fetch('https://wordle-solver-api.herokuapp.com/', requestOptions)
       .then(response => {
         if (!response.ok) {
           alert("Something went wrong...")
+          console.log("Something went wrong...")
         }
         return response.json()
       })
       .then(data => this.setState({ result: data }))
-      .catch(error => alert("Something went wrong... [" + error + "]"))
+      .catch(error => console.log("Something went wrong... [" + error + "]"))
       .finally(() => this.setState({ isLoading: false }))
   }
 
@@ -128,7 +131,7 @@ export default class App extends Component {
       <div className={styles.container}>
 
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>Wordle Solver 0.1</div>
+          <div className={styles.title}>Wordle Solver 0.2</div>
           <div className={styles.instruction}>Stuck in Wordle? No problem! This is a simple online application that helps you solve Wordle problems when you just can't possibly think of the next word. Welcome!</div>
         </div>
 
