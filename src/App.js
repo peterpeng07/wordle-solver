@@ -19,6 +19,7 @@ export default class App extends Component {
       excludeList: [],
       result: [],
       isLoading: false,
+      gotResult: false,
       width: window.innerWidth
     };
 
@@ -92,26 +93,12 @@ export default class App extends Component {
   }
 
   calculate() {
-    console.log("Request sent")
+    this.setState({ result: [], isLoading: true, gotResult: false })
 
-    // this.setState({ result: [], isLoading: true })
-
-    // axios.get('https://wordle-solver-api.herokuapp.com/', {
-
-    // })
-
-    console.log(this.state.first)
-    console.log(this.state.fifth)
-    console.log(this.state.includeList)
-    console.log(this.state.excludeList)
-
-
-
-    axios({
-      method: 'post',
-      url: 'https://wordle-solver-api.herokuapp.com/',
+    const requestOptions = {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      data: {
+      body: JSON.stringify({
         "first": this.state.first,
         "second": this.state.second,
         "third": this.state.third,
@@ -119,54 +106,23 @@ export default class App extends Component {
         "fifth": this.state.fifth,
         "includeList": this.state.includeList,
         "excludeList": this.state.excludeList
-      }
-    })
-      // .then((response) => this.setState({ result: response.data }))
-      .then((response) => {
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
+      }),
+      mode: 'cors'
+    }
+
+    fetch('https://wordle-solver-api.herokuapp.com/', requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          alert("Something went wrong...")
+        }
+        return response.json()
       })
-
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     "first": this.state.first,
-    //     "second": this.state.second,
-    //     "third": this.state.third,
-    //     "fourth": this.state.fourth,
-    //     "fifth": this.state.fifth,
-    //     "includeList": this.state.includeList,
-    //     "excludeList": this.state.excludeList
-    //   }),
-    //   mode: 'cors'
-    // }
-    // fetch('https://wordle-solver-api.herokuapp.com/', requestOptions)
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       alert("Something went wrong...")
-    //       console.log("Something went wrong...")
-    //     }
-    //     console.log(response)
-    //     return response.json()
-    //   })
-    //   .then(data => {
-    //     this.setState({ result: data })
-    //     console.log(data)
-    //   })
-    //   .catch(error => console.log("Something went wrong... [" + error + "]"))
-    //   .finally(() => this.setState({ isLoading: false }))
-
-
-    // fetch('https://wordle-solver-api.herokuapp.com/')
-    //   .then(response => response.text())
-    //   .then(data => console.log(data))
+      .then(data => {
+        this.setState({ result: data })
+      })
+      .catch(error => console.log("Something went wrong... [" + error + "]"))
+      .finally(() => this.setState({ isLoading: false, gotResult: true }))
   }
-
-
 
   render() {
     const isMobile = this.state.width < 768;
@@ -287,16 +243,17 @@ export default class App extends Component {
             {this.state.isLoading ? 'Solving...' : 'SUBMIT'}
           </button>
 
-          <div className={styles.result}>
-            {this.state.result.length === 0 ? <div /> : <div>Possible words</div>}
-            <ul>
-              {this.state.result.map(item => {
-                return (
-                  <li>{item}</li>
-                )
-              })}
-            </ul>
-          </div>
+          {this.state.gotResult ?
+            <div className={styles.result}>
+              {this.state.result.length === 0 ? <div>No words match! Please try again...</div> : <div>Possible words</div>}
+              <ul>
+                {this.state.result.map(item => {
+                  return (
+                    <li>{item}</li>
+                  )
+                })}
+              </ul>
+            </div> : <div />}
         </div >
       </div>
     )
