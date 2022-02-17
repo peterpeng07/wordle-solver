@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles.module.css'
+import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
@@ -91,41 +92,48 @@ export default class App extends Component {
   }
 
   calculate() {
-    this.setState({ result: [], isLoading: true })
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body: JSON.stringify({
-        "first": this.state.first,
-        "second": this.state.second,
-        "third": this.state.third,
-        "fourth": this.state.fourth,
-        "fifth": this.state.fifth,
-        "includeList": this.state.includeList,
-        "excludeList": this.state.excludeList
-      }),
-      mode: 'cors'
-    }
-
     console.log("Request sent")
 
-    // fetch('https://infinite-castle-67227.herokuapp.com/https://wordle-solver-api.herokuapp.com/', requestOptions)
-    fetch('https://wordle-solver-api.herokuapp.com/', requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          alert("Something went wrong...")
-          console.log("Something went wrong...")
-        }
-        return response.json()
-      })
-      .then(data => {
-        this.setState({ result: data })
-        console.log(data)
-        console.log(this.state.result)
-      })
-      .catch(error => console.log("Something went wrong... [" + error + "]"))
-      .finally(() => this.setState({ isLoading: false }))
+    // this.setState({ result: [], isLoading: true })
+
+    // axios.get('https://wordle-solver-api.herokuapp.com/', {
+
+    // })
+
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+    //   body: JSON.stringify({
+    //     "first": this.state.first,
+    //     "second": this.state.second,
+    //     "third": this.state.third,
+    //     "fourth": this.state.fourth,
+    //     "fifth": this.state.fifth,
+    //     "includeList": this.state.includeList,
+    //     "excludeList": this.state.excludeList
+    //   }),
+    //   mode: 'cors'
+    // }
+    // fetch('https://wordle-solver-api.herokuapp.com/', requestOptions)
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       alert("Something went wrong...")
+    //       console.log("Something went wrong...")
+    //     }
+    //     return response.json()
+    //   })
+    //   .then(data => {
+    //     this.setState({ result: data })
+    //     console.log(data)
+    //     console.log(this.state.result)
+    //   })
+    //   .catch(error => console.log("Something went wrong... [" + error + "]"))
+    //   .finally(() => this.setState({ isLoading: false }))
+    fetch('https://wordle-solver-api.herokuapp.com/')
+      .then(response => response.text())
+      .then(data => console.log(data))
   }
+
 
 
   render() {
