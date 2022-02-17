@@ -99,22 +99,36 @@ export default class App extends Component {
     // axios.get('https://wordle-solver-api.herokuapp.com/', {
 
     // })
+
+    console.log(this.state.first)
+    console.log(this.state.fifth)
+    console.log(this.state.includeList)
+    console.log(this.state.excludeList)
+
+
+
     axios({
       method: 'post',
-      url: 'https://wordle-solver-api.herokuapp.com/test',
-      // headers: { 'Content-Type': 'application/json' },
-      // data: {
-      //   "first": this.state.first,
-      //   "second": this.state.second,
-      //   "third": this.state.third,
-      //   "fourth": this.state.fourth,
-      //   "fifth": this.state.fifth,
-      //   "includeList": this.state.includeList,
-      //   "excludeList": this.state.excludeList
-      // }
+      url: 'https://wordle-solver-api.herokuapp.com/',
+      headers: { 'Content-Type': 'application/json' },
+      data: {
+        "first": this.state.first,
+        "second": this.state.second,
+        "third": this.state.third,
+        "fourth": this.state.fourth,
+        "fifth": this.state.fifth,
+        "includeList": this.state.includeList,
+        "excludeList": this.state.excludeList
+      }
     })
       // .then((response) => this.setState({ result: response.data }))
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+      })
 
     // const requestOptions = {
     //   method: 'POST',
@@ -161,7 +175,7 @@ export default class App extends Component {
       <div className={styles.container}>
 
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>Wordle Solver 0.0.3</div>
+          <div className={styles.title}>Wordle Solver 0.0.4</div>
           <div className={styles.instruction}>Stuck in Wordle? No problem! This is a simple online application that helps you solve Wordle problems when you just can't possibly think of the next word. Welcome!</div>
         </div>
 
