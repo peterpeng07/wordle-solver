@@ -99,10 +99,26 @@ export default class App extends Component {
     // axios.get('https://wordle-solver-api.herokuapp.com/', {
 
     // })
+    axios({
+      method: 'post',
+      url: 'https://wordle-solver-api.herokuapp.com/test',
+      // headers: { 'Content-Type': 'application/json' },
+      // data: {
+      //   "first": this.state.first,
+      //   "second": this.state.second,
+      //   "third": this.state.third,
+      //   "fourth": this.state.fourth,
+      //   "fifth": this.state.fifth,
+      //   "includeList": this.state.includeList,
+      //   "excludeList": this.state.excludeList
+      // }
+    })
+      // .then((response) => this.setState({ result: response.data }))
+      .then((response) => console.log(response.data))
 
     // const requestOptions = {
     //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+    //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify({
     //     "first": this.state.first,
     //     "second": this.state.second,
@@ -120,18 +136,20 @@ export default class App extends Component {
     //       alert("Something went wrong...")
     //       console.log("Something went wrong...")
     //     }
+    //     console.log(response)
     //     return response.json()
     //   })
     //   .then(data => {
     //     this.setState({ result: data })
     //     console.log(data)
-    //     console.log(this.state.result)
     //   })
     //   .catch(error => console.log("Something went wrong... [" + error + "]"))
     //   .finally(() => this.setState({ isLoading: false }))
-    fetch('https://wordle-solver-api.herokuapp.com/')
-      .then(response => response.text())
-      .then(data => console.log(data))
+
+
+    // fetch('https://wordle-solver-api.herokuapp.com/')
+    //   .then(response => response.text())
+    //   .then(data => console.log(data))
   }
 
 
@@ -143,7 +161,7 @@ export default class App extends Component {
       <div className={styles.container}>
 
         <div className={styles.titleWrapper}>
-          <div className={styles.title}>Wordle Solver 0.3</div>
+          <div className={styles.title}>Wordle Solver 0.0.3</div>
           <div className={styles.instruction}>Stuck in Wordle? No problem! This is a simple online application that helps you solve Wordle problems when you just can't possibly think of the next word. Welcome!</div>
         </div>
 
